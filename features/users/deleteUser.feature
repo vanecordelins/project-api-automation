@@ -3,7 +3,7 @@ Feature: Deletar usuário
   Scenario: Excluir um usuário existente autenticado
     Given que eu criei um novo usuário
     And eu estou autenticado com este usuário
-    When eu envio uma requisição DELETE para o endpoint do usuário
+    When eu envio uma requisição DELETE para o endpoint usuarios
     Then a resposta deve ter status 200
 
   Scenario: Excluir usuário inexistente autenticado

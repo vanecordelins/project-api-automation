@@ -1,13 +1,12 @@
-const pactum = require('pactum');
+import pactum from 'pactum';
 
-async function gerarToken(email, password) {
-  const spec = pactum.spec();
-  await spec
+export async function gerarToken(email, senha) {
+  const response = await pactum
+    .spec()
     .post('https://serverest.dev/login')
-    .withHeaders('Content-Type', 'application/json')
-    .withBody({ email, password })
-    .expectStatus(200);
-  return spec.response().json.authorization;
-}
+    .withBody({ email, password: senha })
+    .expectStatus(200)
+    .toss();
 
-module.exports = { gerarToken };
+  return response.body.authorization;
+}

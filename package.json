@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "test": "npx cucumber-js --require features/**/*.js --format json:cucumber_report.json",
-    "report": "node report.js"
+    "report": "node report.js",
+    "type": "module"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.0.0",
