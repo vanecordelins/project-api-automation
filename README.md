@@ -1,3 +1,4 @@
+[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
 
 # Testes Automatizados da API Serverest
 
@@ -12,8 +13,8 @@ Este projeto realiza testes automatizados para a API [https://serverest.dev](htt
 ## Como Executar Localmente
 
 ```bash
-git clone <este-repositorio>
-cd servertest-api-tests-full
+git clone git@github.com:vanecordelins/project-api-automation.git
+cd project-api-automation-serverest
 npm install
 npm test
 npm run report   # gera o relatório HTML em cucumber_report.html
