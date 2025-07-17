@@ -1,4 +1,3 @@
-
 name: API Tests CI
 
 on:
@@ -26,7 +25,7 @@ jobs:
     - name: Run tests
       run: npm test
 
-    - name: Generate report
+    - name: Generate HTML report
       run: npm run report
 
     - name: Upload HTML Report
