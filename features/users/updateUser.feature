@@ -3,7 +3,7 @@ Feature: Atualizar usuário
   Scenario: Atualizar usuário existente
     Given que eu criei um novo usuário
     And eu estou autenticado com este usuário
-    When eu envio uma requisição PUT para o endpoint do usuário com dados atualizados
+    When eu envio uma requisição PUT para o endpoint "usuarios" com dados atualizados
     Then a resposta deve ter status 200
     And a resposta deve refletir as atualizações
 

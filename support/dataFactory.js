@@ -1,12 +1,10 @@
-const { faker } = require('@faker-js/faker');
+import { gerarIdAleatorio } from '../utils/dataUtils.js';
 
-function usuarioValido() {
+export function usuarioValido() {
   return {
-    nome: faker.person.fullName(),
-    email: faker.internet.email().toLowerCase(),
-    password: 'Teste123!',
-    administrador: 'true'
+    nome: "Teste " + gerarIdAleatorio(5),
+    email: `usuario${gerarIdAleatorio(5)}@teste.com`,
+    password: "123456",
+    administrador: "true"
   };
 }
-
-module.exports = { usuarioValido };

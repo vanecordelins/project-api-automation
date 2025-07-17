@@ -1,0 +1,63 @@
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "listar-usuários;obter-lista-de-usuários",
+        "keyword": "Scenario",
+        "line": 3,
+        "name": "Obter lista de usuários",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 4,
+            "name": "eu envio uma requisição GET para o endpoint usuarios",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:126"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 867611200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 5,
+            "name": "a resposta deve ter status 200",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:82"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1047900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 6,
+            "name": "a lista de usuários deve ser retornada",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:95"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 184199
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "listar-usuários",
+    "line": 1,
+    "keyword": "Feature",
+    "name": "Listar usuários",
+    "tags": [],
+    "uri": "features\\users\\getUsers.feature"
+  }
+]

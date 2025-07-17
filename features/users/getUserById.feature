@@ -2,7 +2,7 @@ Feature: Obter usuário por ID
 
   Scenario: Buscar usuário existente
     Given que eu criei um novo usuário
-    When eu envio uma requisição GET para o endpoint do usuário
+    When eu envio uma requisição GET para o endpoint usuarios
     Then a resposta deve ter status 200
     And a resposta deve conter o usuário criado
 
