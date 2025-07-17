@@ -22,20 +22,27 @@ Given('o usuário já existe no sistema', async () => {
     .expectStatus(201);
 });
 
-Given('que eu criei um novo usuário', async () => {
-  payload = usuarioValido(); // gera os dados do usuário
-  spec = pactum.spec();
 
-  await spec
+Given('que eu criei um novo usuário', async function () {
+  this.spec = pactum.spec();
+  const payload = usuarioValido();
+
+  const response = await this.spec
     .post('https://serverest.dev/usuarios')
     .withBody(payload)
     .expectStatus(201)
-    .stores('idUsuario', '_id'); // armazena o _id do usuário criado
+    .toss();
 
-  // Armazena os dados em variáveis globais para uso em outros steps
-  global.idUsuario = spec._stash.getDataStore().idUsuario;
-  global.usuarioPayload = payload; // armazena o payload para reuso
+  console.log('Resposta da criação do usuário:', JSON.stringify(response.body, null, 2));
+
+  this.idUsuario = response.body._id;
+  this.usuarioPayload = payload;
+
+  if (!this.idUsuario) {
+    throw new Error('ID do usuário não encontrado na resposta');
+  }
 });
+
 
 
 Given('eu estou autenticado com este usuário', async () => {
@@ -45,29 +52,27 @@ Given('eu estou autenticado com este usuário', async () => {
 });
 
 
-Given('id de usuário inexistente', () => {
-  idUsuario = '000000000000000000000000';
+Given('eu tenho um id de usuário inexistente', function () {
+  this.idUsuario = '0000000000000000000000000023432432424000000';
+});
+
+When('eu envio uma requisição GET para o endpoint do usuário inexistente', async function () {
+  this.spec = pactum.spec();
+
+  const url = `https://serverest.dev/usuarios?_id=${this.idUsuario}`;
+  console.log('URL da requisição GET:', url);
+
+  this.responseGet = await this.spec
+    .get(url)
+    .expectStatus(200)
+    .returns('res.body') 
+    .toss();
+
+  console.log('Resposta da requisição GET:');
+  console.log(JSON.stringify(this.responseGet, null, 2));
 });
 
 
-When('eu envio uma requisição GET para o endpoint do usuário inexistente', async () => {
-  spec = pactum.spec();
-  await spec
-    .get(`https://serverest.dev/usuarios?_id=${idUsuario}`)
-    .expectStatus(404);
-});
-
-
-
-When('eu envio uma requisição PUT para o endpoint do usuário inexistente com dados atualizados', async () => {
-  const updated = { nome: 'Teste', administrador: 'true' };
-  spec = pactum.spec();
-  await spec
-    .put(`https://serverest.dev/usuarios/${idUsuario}`)
-    .withHeaders('Authorization', token)
-    .withBody(updated)
-    .expectStatus(404);
-});
 
 
 When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async () => {
@@ -86,6 +91,23 @@ Then('a resposta deve ter status {int}', async function (statusCode) {
 });
 
 
+Then('a resposta deve retornar uma lista vazia', function () {
+  if (!this.responseGet) {
+    throw new Error('Resposta GET está undefined');
+  }
+
+  const { quantidade, usuarios } = this.responseGet;
+
+  if (quantidade !== 0) {
+    throw new Error(`Esperava quantidade 0, mas recebeu ${quantidade}`);
+  }
+
+  if (!Array.isArray(usuarios) || usuarios.length !== 0) {
+    throw new Error('Esperava lista de usuários vazia, mas encontrou usuários');
+  }
+});
+
+
 
 Then('a resposta deve conter o campo "_id"', () => {
   const body = spec.response().json;
@@ -94,14 +116,33 @@ Then('a resposta deve conter o campo "_id"', () => {
 
 Then('a lista de usuários deve ser retornada', async function () {
   const body = this.spec._response.body;
+ // console.log('Corpo da resposta GET:', JSON.stringify(body, null, 2));
   assert.ok(Array.isArray(body.usuarios), 'usuarios não é um array');
   assert.ok(body.usuarios.length > 0, 'lista de usuários está vazia');
 });
 
-Then('a resposta deve conter o usuário criado', () => {
-  const body = spec.response().json;
-  assert.strictEqual(body.usuario._id, idUsuario);
+
+Then('a resposta deve conter o usuário criado', function () {
+  console.log('Response GET:', JSON.stringify(this.responseGet, null, 2));
+
+  if (!this.responseGet) throw new Error('Resposta GET está undefined');
+
+  if (this.responseGet.quantidade === undefined) {
+    throw new Error('Campo quantidade não encontrado na resposta');
+  }
+
+  if (this.responseGet.quantidade !== 1) {
+    throw new Error(`Quantidade esperada 1, mas recebida ${this.responseGet.quantidade}`);
+  }
+
+  // Validar se o usuário está dentro do array usuarios
+  const usuarioEncontrado = this.responseGet.usuarios.find(u => u._id === this.idUsuario);
+  if (!usuarioEncontrado) {
+    throw new Error('Usuário criado não foi encontrado na resposta');
+  }
 });
+
+
 
 Then('a resposta deve refletir as atualizações', () => {
   const body = spec.response().json;
@@ -123,11 +164,28 @@ When('eu envio uma requisição POST para o endpoint usuarios', async () =>  {
 });
 
 
-When('eu envio uma requisição GET para o endpoint usuarios', async function () {
+When('eu envio uma requisição GET para o endpoint usuarios com o ID do usuário criado', async function () {
   this.spec = pactum.spec();
-  this.spec.get('https://serverest.dev/usuarios');
-  await this.spec.toss();
+  const response = await this.spec
+    .get(`https://serverest.dev/usuarios?_id=${this.idUsuario}`)
+    .expectStatus(200)
+    .toss();
+
+  this.responseGet = response.body; 
+  console.log('Corpo da resposta GET:', JSON.stringify(this.responseGet, null, 2));
 });
+
+
+When('eu envio uma requisição GET para o endpoint usuarios sem parametros', async function () {
+  this.spec = pactum.spec();
+  const response = await this.spec
+    .get('https://serverest.dev/usuarios')  // sem query params
+    .expectStatus(200)
+    .toss();
+
+  this.responseGet = response.body;
+});
+
 
 
 

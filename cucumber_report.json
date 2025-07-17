@@ -4,48 +4,111 @@
     "elements": [
       {
         "description": "",
-        "id": "listar-usuários;obter-lista-de-usuários",
+        "id": "obter-usuário-por-id;buscar-usuário-existente",
         "keyword": "Scenario",
         "line": 3,
-        "name": "Obter lista de usuários",
+        "name": "Buscar usuário existente",
         "steps": [
           {
             "arguments": [],
-            "keyword": "When ",
+            "keyword": "Given ",
             "line": 4,
-            "name": "eu envio uma requisição GET para o endpoint usuarios",
+            "name": "que eu criei um novo usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:126"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:26"
             },
             "result": {
               "status": "passed",
-              "duration": 867611200
+              "duration": 539128800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "eu envio uma requisição GET para o endpoint usuarios com o ID do usuário criado",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:167"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 225023800
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 5,
+            "line": 6,
             "name": "a resposta deve ter status 200",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:82"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:87"
             },
             "result": {
               "status": "passed",
-              "duration": 1047900
+              "duration": 1023099
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 6,
-            "name": "a lista de usuários deve ser retornada",
+            "line": 7,
+            "name": "a resposta deve conter o usuário criado",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:95"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:125"
             },
             "result": {
               "status": "passed",
-              "duration": 184199
+              "duration": 604399
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "obter-usuário-por-id;buscar-usuário-inexistente",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Buscar usuário inexistente",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "eu tenho um id de usuário inexistente",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:55"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 96700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "eu envio uma requisição GET para o endpoint do usuário inexistente",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:59"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 451147700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "a resposta deve retornar uma lista vazia",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:94"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 111800
             }
           }
         ],
@@ -53,11 +116,11 @@
         "type": "scenario"
       }
     ],
-    "id": "listar-usuários",
+    "id": "obter-usuário-por-id",
     "line": 1,
     "keyword": "Feature",
-    "name": "Listar usuários",
+    "name": "Obter usuário por ID",
     "tags": [],
-    "uri": "features\\users\\getUsers.feature"
+    "uri": "features\\users\\getUserById.feature"
   }
 ]
