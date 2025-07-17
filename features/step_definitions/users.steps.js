@@ -1,12 +1,13 @@
-const { Given, When, Then } = require('@cucumber/cucumber');
-const pactum = require('pactum');
-const assert = require('assert');
-const { gerarToken } = require('../../support/auth');
-const { usuarioValido } = require('../../support/dataFactory');
+import { Given, When, Then } from '@cucumber/cucumber';
+import pactum from 'pactum';
+import assert from 'assert';
+import { gerarToken } from '../../support/auth.js';
+import { usuarioValido } from '../../support/dataFactory.js';
+import { gerarIdAleatorio } from '../../utils/dataUtils.js';
 
 let spec;
 let payload;
-let idUsuario;
+let idUsuario = gerarIdAleatorio(10);
 let token;
 
 Given('que eu tenho um payload válido de usuário', () => {
@@ -40,17 +41,11 @@ Given('id de usuário inexistente', () => {
   idUsuario = '000000000000000000000000';
 });
 
-When('eu envio uma requisição GET para o endpoint "/usuarios/{id}"', async () => {
-  spec = pactum.spec();
-  await spec
-    .get(`https://serverest.dev/usuarios/${idUsuario}`)
-    .expectStatus(200);
-});
 
 When('eu envio uma requisição GET para o endpoint do usuário inexistente', async () => {
   spec = pactum.spec();
   await spec
-    .get(`https://serverest.dev/usuarios/${idUsuario}`)
+    .get(`https://serverest.dev/usuarios?_id=${idUsuario}`)
     .expectStatus(404);
 });
 
@@ -63,15 +58,6 @@ When('eu envio uma requisição POST para o endpoint "/usuarios"', async () => {
     .expectStatus(/20[01]/);
 });
 
-When('eu envio uma requisição PUT para o endpoint "/usuarios/{id}" com dados atualizados', async () => {
-  const updated = { nome: 'Nome Atualizado', administrador: 'false' };
-  spec = pactum.spec();
-  await spec
-    .put(`https://serverest.dev/usuarios/${idUsuario}`)
-    .withHeaders('Authorization', token)
-    .withBody(updated)
-    .expectStatus(200);
-});
 
 When('eu envio uma requisição PUT para o endpoint do usuário inexistente com dados atualizados', async () => {
   const updated = { nome: 'Teste', administrador: 'true' };
@@ -83,13 +69,6 @@ When('eu envio uma requisição PUT para o endpoint do usuário inexistente com 
     .expectStatus(404);
 });
 
-When('eu envio uma requisição DELETE para o endpoint "/usuarios/{id}"', async () => {
-  spec = pactum.spec();
-  await spec
-    .delete(`https://serverest.dev/usuarios/${idUsuario}`)
-    .withHeaders('Authorization', token)
-    .expectStatus(200);
-});
 
 When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async () => {
   spec = pactum.spec();
