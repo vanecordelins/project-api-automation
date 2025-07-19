@@ -1,3 +1,5 @@
+[![Run API Tests](https://github.com/vanecordelins/project-api-automation/actions/workflows/tests.yml/badge.svg)](https://github.com/vanecordelins/project-api-automation/actions/workflows/tests.yml)
+
 [![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
 
 # Testes Automatizados da API Serverest
