@@ -46,5 +46,5 @@ Cada `push` ou `pull_request` na branch `main` executa automaticamente:
 4. Upload do `cucumber_report.html` como artefato
 
 ## Autor
-Vanessa Lins
-Desafio de Automação de Testes para Serverest API
+- Vanessa Lins
+- Desafio de Automação de Testes para Serverest API
