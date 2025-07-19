@@ -2,8 +2,8 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { faker } from '@faker-js/faker';
 import pactum from 'pactum';
 import assert from 'assert';
-import { gerarToken } from '../../support/auth.js';
-import { usuarioValido } from '../../support/dataFactory.js';
+import { gerarToken } from '../../utils/auth.js';
+import { usuarioValido } from '../../utils/dataFactory.js';
 import { gerarIdAleatorio } from '../../utils/dataUtils.js';
 
 let spec;
