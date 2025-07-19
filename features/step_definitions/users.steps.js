@@ -1,4 +1,5 @@
 import { Given, When, Then } from '@cucumber/cucumber';
+import { faker } from '@faker-js/faker';
 import pactum from 'pactum';
 import assert from 'assert';
 import { gerarToken } from '../../support/auth.js';
@@ -72,6 +73,19 @@ Given('eu tenho um id de usuário inexistente', function () {
   this.idUsuario = '000000000000000000000000002344354532432424000000';
 });
 
+Given('eu tenho um id de usuário fake', function () {
+  this.idUsuario = faker.string.alphanumeric(24);
+});
+
+
+When('eu verifico se o ID realmente não existe', async function () {
+  const specCheck = pactum.spec();
+  const res = await specCheck
+    .get(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .expectStatus(400);
+});
+
+
 When('eu envio uma requisição GET para o endpoint do usuário inexistente', async function () {
   this.spec = pactum.spec();
 
@@ -91,13 +105,34 @@ When('eu envio uma requisição GET para o endpoint do usuário inexistente', as
 
 
 
-When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async () => {
-  spec = pactum.spec();
-  await spec
-    .delete(`https://serverest.dev/usuarios/${idUsuario}`)
-    .withHeaders('Authorization', token)
-    .expectStatus(404);
+When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async function () {
+  this.spec = pactum.spec();
+  await this.spec
+    .delete(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .withHeaders('Authorization', global.token)
+    .expectStatus(200) // mudar para 400 se a API realmente tratar assim
+    .toss();
 });
+
+Then('a resposta deve indicar que o usuário não existe', function () {
+  //esse endpoint retorna 200 com uma mensagem de confirmação que o usuário
+  //foi deletado ou não
+  
+  const res = this.spec._response;
+  const body = res.body;
+
+  // Validação do status
+  assert.strictEqual(res.statusCode, 200, `Esperado status 200, mas foi ${res.statusCode}`);
+
+  // Log do corpo da resposta
+  console.log('Body:', JSON.stringify(body, null, 2));
+
+  // Validação da mensagem
+  assert.ok(
+    body.message.includes('Nenhum registro excluído'),
+    'Mensagem não indica exclusão inexistente')
+});
+
 
 
 Then('a resposta deve ter status {int}', async function (statusCode) {
@@ -261,10 +296,18 @@ When('eu envio uma requisição PUT para o endpoint com dados inválidos', async
 
 
 
-When('eu envio uma requisição DELETE para o endpoint usuarios', async () => {
-  spec = pactum.spec();
-  spec.delete(`https://serverest.dev/usuarios/${global.idUsuario}`)
-    .withHeaders("Authorization", global.token)
-    .expectStatus(200);
-  await spec.toss();
+When('eu envio uma requisição DELETE para o endpoint usuarios', async function () {
+  this.spec = pactum.spec();
+
+  const response = await this.spec
+    .delete(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .withHeaders('Authorization', global.token)
+    .expectStatus(200)
+    .toss();
+
+  // Prints para depuração
+  console.log('Status da resposta:', response.statusCode);
+  console.log('Corpo da resposta:', JSON.stringify(response.body, null, 2));
 });
+
+
