@@ -1,4 +1,3 @@
-
 const reporter = require('cucumber-html-reporter');
 
 const options = {
@@ -8,9 +7,8 @@ const options = {
   reportSuiteAsScenarios: true,
   launchReport: false,
   metadata: {
-    "Project": "Serverest API Testes",
-    "Executor": "GitHub Actions / Local",
-    "Ambiente": "Staging"
+    "Test Environment": "STAGE",
+    "Executed": "GitHub Actions"
   }
 };
 
