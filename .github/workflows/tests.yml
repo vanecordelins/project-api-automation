@@ -26,7 +26,7 @@ jobs:
         run: chmod +x node_modules/.bin/cucumber-js
 
       - name: Rodar testes BDD
-        run: npx cucumber-js --format progress --format json:cucumber_report.json
+        run: npx cucumber-js --format @cucumber/pretty-formatter --format json:cucumber_report.json
 
       - name: Gerar relatório HTML
         run: node generate-report.js

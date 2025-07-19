@@ -2,11 +2,12 @@
   "name": "servertest-api-tests-full",
   "type": "module",
   "scripts": {
-    "test": "cucumber-js --format progress --format json:cucumber_report.json",
+    "test": "cucumber-js --format @cucumber/pretty-formatter --format json:cucumber_report.json",
     "report": "node generate-report.js"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.0.0",
+    "@cucumber/pretty-formatter": "^2.0.0",
     "@faker-js/faker": "^8.0.2",
     "cucumber-html-reporter": "^6.0.0",
     "pactum": "^3.4.0"
