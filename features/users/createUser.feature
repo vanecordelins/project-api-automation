@@ -11,3 +11,14 @@ Feature: Criar usuário
     And o usuário já existe no sistema
     When eu envio uma requisição POST para o endpoint usuarios
     Then a resposta deve ter status 400
+    And a mensagem de erro deve ser "Este email já está sendo usado"
+
+  Scenario: Criar usuário inválido
+    Given que eu tenho um payload inválido de usuário
+    When eu envio uma requisição POST para o endpoint usuarios
+    Then a resposta deve ter status 400
+    And as mensagens de erro devem ser:
+      | nome          | nome não pode ficar em branco            |
+      | email         | email deve ser um email válido           |
+      | password      | password não pode ficar em branco        |
+      | administrador | administrador deve ser 'true' ou 'false' |

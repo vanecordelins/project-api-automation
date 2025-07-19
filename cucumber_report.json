@@ -4,61 +4,61 @@
     "elements": [
       {
         "description": "",
-        "id": "deletar-usuário;excluir-um-usuário-existente-autenticado",
+        "id": "criar-usuário;criar-usuário-com-dados-válidos",
         "keyword": "Scenario",
         "line": 3,
-        "name": "Excluir um usuário existente autenticado",
+        "name": "Criar usuário com dados válidos",
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 4,
-            "name": "que eu criei um novo usuário",
+            "name": "que eu tenho um payload válido de usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:27"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:14"
             },
             "result": {
               "status": "passed",
-              "duration": 513241500
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 5,
-            "name": "eu estou autenticado com um usuário válido",
-            "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:49"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 211262099
+              "duration": 615799
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 6,
-            "name": "eu envio uma requisição DELETE para o endpoint usuarios",
+            "line": 5,
+            "name": "eu envio uma requisição POST para o endpoint usuarios",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:299"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:307"
             },
             "result": {
               "status": "passed",
-              "duration": 231857500
+              "duration": 584371199
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 7,
-            "name": "a resposta deve ter status 200",
+            "line": 6,
+            "name": "a resposta deve ter status 201",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:138"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:140"
             },
             "result": {
               "status": "passed",
-              "duration": 631599
+              "duration": 753600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 7,
+            "name": "a resposta deve conter o campo \"_id\"",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:165"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 191900
             }
           }
         ],
@@ -67,74 +67,166 @@
       },
       {
         "description": "",
-        "id": "deletar-usuário;excluir-usuário-inexistente-autenticado",
+        "id": "criar-usuário;criar-usuário-duplicado",
         "keyword": "Scenario",
         "line": 9,
-        "name": "Excluir usuário inexistente autenticado",
+        "name": "Criar usuário duplicado",
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 10,
-            "name": "eu estou autenticado com um usuário válido",
+            "name": "que eu tenho um payload válido de usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:49"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:14"
             },
             "result": {
               "status": "passed",
-              "duration": 423067500
+              "duration": 113599
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
             "line": 11,
-            "name": "eu tenho um id de usuário fake",
+            "name": "o usuário já existe no sistema",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:76"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:19"
             },
             "result": {
               "status": "passed",
-              "duration": 528800
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "And ",
-            "line": 12,
-            "name": "eu verifico se o ID realmente não existe",
-            "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:81"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 229459099
+              "duration": 232739100
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 13,
-            "name": "eu envio uma requisição DELETE para o endpoint do usuário inexistente",
+            "line": 12,
+            "name": "eu envio uma requisição POST para o endpoint usuarios",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:108"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:307"
             },
             "result": {
               "status": "passed",
-              "duration": 226110599
+              "duration": 215874499
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 14,
-            "name": "a resposta deve indicar que o usuário não existe",
+            "line": 13,
+            "name": "a resposta deve ter status 400",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:117"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:140"
             },
             "result": {
               "status": "passed",
-              "duration": 679599
+              "duration": 840299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 14,
+            "name": "a mensagem de erro deve ser \"Este email já está sendo usado\"",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:327"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 630799
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "criar-usuário;criar-usuário-inválido",
+        "keyword": "Scenario",
+        "line": 16,
+        "name": "Criar usuário inválido",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 17,
+            "name": "que eu tenho um payload inválido de usuário",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:242"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 86900
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 18,
+            "name": "eu envio uma requisição POST para o endpoint usuarios",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:307"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 225098199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "a resposta deve ter status 400",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:140"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 264899
+            }
+          },
+          {
+            "arguments": [
+              {
+                "rows": [
+                  {
+                    "cells": [
+                      "nome",
+                      "nome não pode ficar em branco"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "email",
+                      "email deve ser um email válido"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "password",
+                      "password não pode ficar em branco"
+                    ]
+                  },
+                  {
+                    "cells": [
+                      "administrador",
+                      "administrador deve ser 'true' ou 'false'"
+                    ]
+                  }
+                ]
+              }
+            ],
+            "keyword": "And ",
+            "line": 20,
+            "name": "as mensagens de erro devem ser:",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:337"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 275000
             }
           }
         ],
@@ -142,11 +234,11 @@
         "type": "scenario"
       }
     ],
-    "id": "deletar-usuário",
+    "id": "criar-usuário",
     "line": 1,
     "keyword": "Feature",
-    "name": "Deletar usuário",
+    "name": "Criar usuário",
     "tags": [],
-    "uri": "features\\users\\deleteUser.feature"
+    "uri": "features\\users\\createUser.feature"
   }
 ]

@@ -11,16 +11,18 @@ let payload;
 let idUsuario = gerarIdAleatorio(10);
 let token;
 
-Given('que eu tenho um payload válido de usuário', () => {
-  payload = usuarioValido();
+Given('que eu tenho um payload válido de usuário', function () {
+  this.payload = usuarioValido();
 });
 
-Given('o usuário já existe no sistema', async () => {
+
+Given('o usuário já existe no sistema', async function () {
   const specCreate = pactum.spec();
   await specCreate
     .post('https://serverest.dev/usuarios')
-    .withBody(payload)
-    .expectStatus(201);
+    .withBody(this.payload)  // usa o payload criado no step anterior
+    .expectStatus(201)
+    .toss();
 });
 
 
@@ -117,7 +119,7 @@ When('eu envio uma requisição DELETE para o endpoint do usuário inexistente',
 Then('a resposta deve indicar que o usuário não existe', function () {
   //esse endpoint retorna 200 com uma mensagem de confirmação que o usuário
   //foi deletado ou não
-  
+
   const res = this.spec._response;
   const body = res.body;
 
@@ -137,10 +139,7 @@ Then('a resposta deve indicar que o usuário não existe', function () {
 
 Then('a resposta deve ter status {int}', async function (statusCode) {
   const res = this.spec._response;
-
   console.log('Status retornado:', res?.statusCode);
-  //console.log('Corpo da resposta:', JSON.stringify(res?.body, null, 2));
-
   assert.strictEqual(res.statusCode, statusCode, `Esperado status ${statusCode}, mas foi ${res?.statusCode}`);
 });
 
@@ -163,10 +162,10 @@ Then('a resposta deve retornar uma lista vazia', function () {
 
 
 
-Then('a resposta deve conter o campo "_id"', () => {
-  const body = spec.response().json;
-  assert.ok(body._id);
+Then('a resposta deve conter o campo "_id"', function () {
+  assert.ok(this.response.body._id, 'Campo _id não encontrado na resposta');
 });
+
 
 Then('a lista de usuários deve ser retornada', async function () {
   const body = this.spec._response.body;
@@ -217,21 +216,6 @@ Then('a resposta deve refletir as atualizações', async function () {
 
 
 
-
-When('eu envio uma requisição POST para o endpoint usuarios', async () =>  {
-  spec = pactum.spec();
-  spec.post('https://serverest.dev/usuarios')
-    .withBody(global.usuarioPayload)
-    .expectStatus(201);
-  const response = await spec.toss();
-  if (response.statusCode === 201 && response.body && response.body._id) {
-    global.idUsuario = response.body._id;
-  } else {
-    throw new Error('Falha ao criar usuário: ID não encontrado');
-  }
-});
-
-
 When('eu envio uma requisição GET para o endpoint usuarios com o ID do usuário criado', async function () {
   this.spec = pactum.spec();
   const response = await this.spec
@@ -255,6 +239,14 @@ When('eu envio uma requisição GET para o endpoint usuarios sem parametros', as
 });
 
 
+Given('que eu tenho um payload inválido de usuário', function () {
+  this.payload = {
+    nome: '',         
+    email: 'email-invalido', 
+    password: '',     
+    administrador: 'sem_admin' 
+  };
+});
 
 
 When('eu envio uma requisição PUT para o endpoint usuarios com dados atualizados', async function () {
@@ -310,4 +302,48 @@ When('eu envio uma requisição DELETE para o endpoint usuarios', async function
   console.log('Corpo da resposta:', JSON.stringify(response.body, null, 2));
 });
 
+
+
+When('eu envio uma requisição POST para o endpoint usuarios', async function () {
+  console.log('Payload enviado:', this.payload); 
+  this.spec = pactum.spec();
+
+  const response = await this.spec
+    .post('https://serverest.dev/usuarios')
+    .withBody(this.payload)
+    .toss();
+
+  this.response = response;
+
+  if (response.statusCode === 201 && response.body && response.body._id) {
+    this.idUsuario = response.body._id;
+  }
+
+  console.log('Status:', response.statusCode);
+  console.log('Body:', JSON.stringify(response.body, null, 2));
+});
+
+
+Then('a mensagem de erro deve ser {string}', function (mensagemEsperada) {
+  const body = this.response.body;
+
+  assert.strictEqual(
+    body.message,
+    mensagemEsperada,
+    `Esperava a mensagem "${mensagemEsperada}" mas recebeu "${body.message}"`
+  );
+});
+
+Then('as mensagens de erro devem ser:', function (dataTable) {
+  const errosEsperados = dataTable.rowsHash();
+  const body = this.response.body;
+
+  for (const campo in errosEsperados) {
+    assert.strictEqual(
+      body[campo],
+      errosEsperados[campo],
+      `Esperava mensagem de erro no campo '${campo}': "${errosEsperados[campo]}" mas recebeu "${body[campo]}"`
+    );
+  }
+});
 
