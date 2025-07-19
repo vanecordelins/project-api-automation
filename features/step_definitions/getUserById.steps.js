@@ -24,14 +24,14 @@ When('eu envio uma requisição GET para o endpoint usuarios com o ID do usuári
     .toss();
 
   this.responseGet = response.body;
-  console.log('Corpo da resposta GET:', JSON.stringify(this.responseGet, null, 2));
+  //console.log('Corpo da resposta GET:', JSON.stringify(this.responseGet, null, 2));
 });
 
 When('eu envio uma requisição GET para o endpoint do usuário inexistente', async function () {
   this.spec = pactum.spec();
 
   const url = `https://serverest.dev/usuarios?_id=${this.idUsuario}`;
-  console.log('URL da requisição GET:', url);
+  //console.log('URL da requisição GET:', url);
 
   this.responseGet = await this.spec
     .get(url)
@@ -39,12 +39,12 @@ When('eu envio uma requisição GET para o endpoint do usuário inexistente', as
     .returns('res.body')
     .toss();
 
-  console.log('Resposta da requisição GET:');
-  console.log(JSON.stringify(this.responseGet, null, 2));
+  //console.log('Resposta da requisição GET:');
+  //console.log(JSON.stringify(this.responseGet, null, 2));
 });
 
 Then('a resposta deve conter o usuário criado', function () {
-  console.log('Response GET:', JSON.stringify(this.responseGet, null, 2));
+  //console.log('Response GET:', JSON.stringify(this.responseGet, null, 2));
 
   if (!this.responseGet) throw new Error('Resposta GET está undefined');
 

@@ -22,14 +22,11 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Dar permissão de execução ao cucumber-js
-        run: chmod +x node_modules/.bin/cucumber-js
-
       - name: Rodar testes BDD
-        run: npm test
+        run: npx cucumber-js --format progress --format json:cucumber_report.json
 
       - name: Gerar relatório HTML
-        run: npm run report
+        run: node generate-report.js
 
       - name: Upload do relatório como artefato
         uses: actions/upload-artifact@v4
