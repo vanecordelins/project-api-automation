@@ -1,7 +1,8 @@
 {
   "name": "servertest-api-tests-full",
+  "type": "module",
   "scripts": {
-    "test": "npx cucumber-js --format pretty --format json:cucumber_report.json",
+    "test": "cucumber-js --format progress --format json:cucumber_report.json",
     "report": "node generate-report.js"
   },
   "devDependencies": {
