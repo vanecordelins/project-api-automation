@@ -1,8 +1,8 @@
 {
   "name": "servertest-api-tests-full",
   "scripts": {
-    "test": "npx cucumber-js --format json:cucumber_report.json --publish-quiet",
-    "report": "node generate-report.js"
+  "test": "node --no-warnings ./node_modules/.bin/cucumber-js --format json:cucumber_report.json --publish-quiet",
+  "report": "node generate-report.js"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^10.0.0",
