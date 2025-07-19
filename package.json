@@ -1,7 +1,7 @@
 {
   "name": "servertest-api-tests-full",
   "scripts": {
-    "test": "npx cucumber-js --format json:cucumber_report.json --publish-quiet",
+    "test": "npx cucumber-js --format pretty --format json:cucumber_report.json",
     "report": "node generate-report.js"
   },
   "devDependencies": {
@@ -11,4 +11,3 @@
     "pactum": "^3.4.0"
   }
 }
-
