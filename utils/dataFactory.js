@@ -1,4 +1,4 @@
-import { gerarIdAleatorio } from '../utils/dataUtils.js';
+import { gerarIdAleatorio } from './dataUtils.js';
 
 export function usuarioValido() {
   return {
