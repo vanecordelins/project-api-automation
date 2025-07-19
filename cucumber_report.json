@@ -4,10 +4,10 @@
     "elements": [
       {
         "description": "",
-        "id": "obter-usuário-por-id;buscar-usuário-existente",
+        "id": "deletar-usuário;excluir-um-usuário-existente-autenticado",
         "keyword": "Scenario",
         "line": 3,
-        "name": "Buscar usuário existente",
+        "name": "Excluir um usuário existente autenticado",
         "steps": [
           {
             "arguments": [],
@@ -15,50 +15,50 @@
             "line": 4,
             "name": "que eu criei um novo usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:26"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:27"
             },
             "result": {
               "status": "passed",
-              "duration": 539128800
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "line": 5,
-            "name": "eu envio uma requisição GET para o endpoint usuarios com o ID do usuário criado",
-            "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:167"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 225023800
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "Then ",
-            "line": 6,
-            "name": "a resposta deve ter status 200",
-            "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:87"
-            },
-            "result": {
-              "status": "passed",
-              "duration": 1023099
+              "duration": 513241500
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 7,
-            "name": "a resposta deve conter o usuário criado",
+            "line": 5,
+            "name": "eu estou autenticado com um usuário válido",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:125"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:49"
             },
             "result": {
               "status": "passed",
-              "duration": 604399
+              "duration": 211262099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 6,
+            "name": "eu envio uma requisição DELETE para o endpoint usuarios",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:299"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 231857500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 7,
+            "name": "a resposta deve ter status 200",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:138"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 631599
             }
           }
         ],
@@ -67,48 +67,74 @@
       },
       {
         "description": "",
-        "id": "obter-usuário-por-id;buscar-usuário-inexistente",
+        "id": "deletar-usuário;excluir-usuário-inexistente-autenticado",
         "keyword": "Scenario",
         "line": 9,
-        "name": "Buscar usuário inexistente",
+        "name": "Excluir usuário inexistente autenticado",
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
             "line": 10,
-            "name": "eu tenho um id de usuário inexistente",
+            "name": "eu estou autenticado com um usuário válido",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:55"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:49"
             },
             "result": {
               "status": "passed",
-              "duration": 96700
+              "duration": 423067500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "eu tenho um id de usuário fake",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:76"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 528800
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "eu verifico se o ID realmente não existe",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:81"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 229459099
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 11,
-            "name": "eu envio uma requisição GET para o endpoint do usuário inexistente",
+            "line": 13,
+            "name": "eu envio uma requisição DELETE para o endpoint do usuário inexistente",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:59"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:108"
             },
             "result": {
               "status": "passed",
-              "duration": 451147700
+              "duration": 226110599
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 12,
-            "name": "a resposta deve retornar uma lista vazia",
+            "line": 14,
+            "name": "a resposta deve indicar que o usuário não existe",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:94"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\users.steps.js:117"
             },
             "result": {
               "status": "passed",
-              "duration": 111800
+              "duration": 679599
             }
           }
         ],
@@ -116,11 +142,11 @@
         "type": "scenario"
       }
     ],
-    "id": "obter-usuário-por-id",
+    "id": "deletar-usuário",
     "line": 1,
     "keyword": "Feature",
-    "name": "Obter usuário por ID",
+    "name": "Deletar usuário",
     "tags": [],
-    "uri": "features\\users\\getUserById.feature"
+    "uri": "features\\users\\deleteUser.feature"
   }
 ]

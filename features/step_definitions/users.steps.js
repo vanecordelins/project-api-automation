@@ -1,4 +1,5 @@
 import { Given, When, Then } from '@cucumber/cucumber';
+import { faker } from '@faker-js/faker';
 import pactum from 'pactum';
 import assert from 'assert';
 import { gerarToken } from '../../support/auth.js';
@@ -45,16 +46,45 @@ Given('que eu criei um novo usuário', async function () {
 
 
 
-Given('eu estou autenticado com este usuário', async () => {
-  assert.ok(payload, 'Payload do usuário está indefinido!');
-  token = await gerarToken(payload.email, payload.password);
-  global.token = token;
+Given('eu estou autenticado com um usuário válido', async function () {
+  if (!this.usuarioPayload) {
+    // Criar usuário apenas para autenticação
+    this.usuarioPayload = usuarioValido();
+
+    const specCreate = pactum.spec();
+    const response = await specCreate
+      .post('https://serverest.dev/usuarios')
+      .withBody(this.usuarioPayload)
+      .expectStatus(201)
+      .toss();
+
+    if (!response.body._id) {
+      throw new Error('Falha ao criar usuário para autenticação');
+    }
+  }
+
+  const tokenGerado = await gerarToken(this.usuarioPayload.email, this.usuarioPayload.password);
+  global.token = tokenGerado;
 });
+
 
 
 Given('eu tenho um id de usuário inexistente', function () {
-  this.idUsuario = '0000000000000000000000000023432432424000000';
+  this.idUsuario = '000000000000000000000000002344354532432424000000';
 });
+
+Given('eu tenho um id de usuário fake', function () {
+  this.idUsuario = faker.string.alphanumeric(24);
+});
+
+
+When('eu verifico se o ID realmente não existe', async function () {
+  const specCheck = pactum.spec();
+  const res = await specCheck
+    .get(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .expectStatus(400);
+});
+
 
 When('eu envio uma requisição GET para o endpoint do usuário inexistente', async function () {
   this.spec = pactum.spec();
@@ -75,18 +105,42 @@ When('eu envio uma requisição GET para o endpoint do usuário inexistente', as
 
 
 
-When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async () => {
-  spec = pactum.spec();
-  await spec
-    .delete(`https://serverest.dev/usuarios/${idUsuario}`)
-    .withHeaders('Authorization', token)
-    .expectStatus(404);
+When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async function () {
+  this.spec = pactum.spec();
+  await this.spec
+    .delete(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .withHeaders('Authorization', global.token)
+    .expectStatus(200) // mudar para 400 se a API realmente tratar assim
+    .toss();
 });
+
+Then('a resposta deve indicar que o usuário não existe', function () {
+  //esse endpoint retorna 200 com uma mensagem de confirmação que o usuário
+  //foi deletado ou não
+  
+  const res = this.spec._response;
+  const body = res.body;
+
+  // Validação do status
+  assert.strictEqual(res.statusCode, 200, `Esperado status 200, mas foi ${res.statusCode}`);
+
+  // Log do corpo da resposta
+  console.log('Body:', JSON.stringify(body, null, 2));
+
+  // Validação da mensagem
+  assert.ok(
+    body.message.includes('Nenhum registro excluído'),
+    'Mensagem não indica exclusão inexistente')
+});
+
 
 
 Then('a resposta deve ter status {int}', async function (statusCode) {
   const res = this.spec._response;
+
   console.log('Status retornado:', res?.statusCode);
+  //console.log('Corpo da resposta:', JSON.stringify(res?.body, null, 2));
+
   assert.strictEqual(res.statusCode, statusCode, `Esperado status ${statusCode}, mas foi ${res?.statusCode}`);
 });
 
@@ -143,11 +197,25 @@ Then('a resposta deve conter o usuário criado', function () {
 });
 
 
+Then('a resposta deve refletir as atualizações', async function () {
+  const spec = pactum.spec();
 
-Then('a resposta deve refletir as atualizações', () => {
-  const body = spec.response().json;
-  assert.strictEqual(body.usuario.nome, 'Nome Atualizado');
+  const res = await spec
+    .get(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .expectStatus(200)
+    .toss();
+
+  const usuarioAtualizado = res.body;
+
+  console.log('Usuário atualizado (GET após PUT):', JSON.stringify(usuarioAtualizado, null, 2));
+  console.log('Payload esperado:', JSON.stringify(this.usuarioAtualizadoPayload, null, 2));
+
+  // Verificação dos campos atualizados
+  assert.strictEqual(usuarioAtualizado.nome, this.usuarioAtualizadoPayload.nome, 'Nome não foi atualizado corretamente');
+  assert.strictEqual(usuarioAtualizado.email, this.usuarioAtualizadoPayload.email, 'Email não foi atualizado corretamente');
 });
+
+
 
 
 When('eu envio uma requisição POST para o endpoint usuarios', async () =>  {
@@ -189,26 +257,57 @@ When('eu envio uma requisição GET para o endpoint usuarios sem parametros', as
 
 
 
-When('eu envio uma requisição PUT para o endpoint usuarios com dados atualizados', async () => {
-  spec = pactum.spec();
-  await spec
-    .put(`https://serverest.dev/usuarios/${global.idUsuario}`)
+When('eu envio uma requisição PUT para o endpoint usuarios com dados atualizados', async function () {
+  const payloadAtualizado = {
+    nome: 'Nome Atualizado ' + Date.now(),
+    email: `atualizado${Date.now()}@teste.com`,
+    password: '123456',
+    administrador: 'true'
+  };
+
+  this.usuarioAtualizadoPayload = payloadAtualizado;
+
+  this.spec = pactum.spec();
+  await this.spec
+    .put(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .withBody(payloadAtualizado)
+    .expectStatus(200)
+    .toss();
+});
+
+
+
+
+When('eu envio uma requisição PUT para o endpoint com dados inválidos', async function () {
+  this.spec = pactum.spec();
+  await this.spec
+    .put(`https://serverest.dev/usuarios/${this.idUsuario}`)
     .withHeaders("Authorization", global.token)
     .withBody({
-      nome: "Atualizado",
-      email: global.usuarioPayload.email,
-      password: "123456",
-      administrador: "true"
+      nome: "",
+      email: "emailinvalido",
+      password: "",
+      administrador: "maybe"
     })
-    .expectStatus(200);
+    .expectStatus(400)
+    .toss();
 });
 
 
 
-When('eu envio uma requisição DELETE para o endpoint usuarios', async () => {
-  spec = pactum.spec();
-  spec.delete(`https://serverest.dev/usuarios/${global.idUsuario}`)
-    .withHeaders("Authorization", global.token)
-    .expectStatus(200);
-  await spec.toss();
+
+When('eu envio uma requisição DELETE para o endpoint usuarios', async function () {
+  this.spec = pactum.spec();
+
+  const response = await this.spec
+    .delete(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .withHeaders('Authorization', global.token)
+    .expectStatus(200)
+    .toss();
+
+  // Prints para depuração
+  console.log('Status da resposta:', response.statusCode);
+  console.log('Corpo da resposta:', JSON.stringify(response.body, null, 2));
 });
+
+
