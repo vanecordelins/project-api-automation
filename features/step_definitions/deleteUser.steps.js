@@ -22,7 +22,7 @@ Given('que eu criei um novo usuário', async function () {
     .expectStatus(201)
     .toss();
 
-  console.log('Resposta da criação do usuário:', JSON.stringify(response.body, null, 2));
+  //console.log('Resposta da criação do usuário:', JSON.stringify(response.body, null, 2));
 
   this.idUsuario = response.body._id;
   this.usuarioPayload = payload;
@@ -74,8 +74,8 @@ When('eu envio uma requisição DELETE para o endpoint usuarios', async function
     .expectStatus(200)
     .toss();
 
-  console.log('Status da resposta:', response.statusCode);
-  console.log('Corpo da resposta:', JSON.stringify(response.body, null, 2));
+  //console.log('Status da resposta:', response.statusCode);
+  //console.log('Corpo da resposta:', JSON.stringify(response.body, null, 2));
 });
 
 When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async function () {
@@ -93,7 +93,7 @@ Then('a resposta deve indicar que o usuário não existe', function () {
 
   assert.strictEqual(res.statusCode, 200, `Esperado status 200, mas foi ${res.statusCode}`);
 
-  console.log('Body:', JSON.stringify(body, null, 2));
+  //console.log('Body:', JSON.stringify(body, null, 2));
 
   assert.ok(
     body.message.includes('Nenhum registro excluído'),

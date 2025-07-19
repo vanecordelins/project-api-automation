@@ -55,8 +55,8 @@ Then('a resposta deve refletir as atualizações', async function () {
 
   const usuarioAtualizado = res.body;
 
-  console.log('Usuário atualizado (GET após PUT):', JSON.stringify(usuarioAtualizado, null, 2));
-  console.log('Payload esperado:', JSON.stringify(this.usuarioAtualizadoPayload, null, 2));
+  //console.log('Usuário atualizado (GET após PUT):', JSON.stringify(usuarioAtualizado, null, 2));
+  //console.log('Payload esperado:', JSON.stringify(this.usuarioAtualizadoPayload, null, 2));
 
   assert.strictEqual(usuarioAtualizado.nome, this.usuarioAtualizadoPayload.nome, 'Nome não foi atualizado corretamente');
   assert.strictEqual(usuarioAtualizado.email, this.usuarioAtualizadoPayload.email, 'Email não foi atualizado corretamente');

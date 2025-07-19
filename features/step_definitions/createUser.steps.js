@@ -35,7 +35,7 @@ Given('que eu tenho um payload inválido de usuário', function () {
 });
 
 When('eu envio uma requisição POST para o endpoint usuarios', async function () {
-  console.log('Payload enviado:', this.payload);
+  //console.log('Payload enviado:', this.payload);
   this.spec = pactum.spec();
 
   const response = await this.spec
@@ -49,13 +49,13 @@ When('eu envio uma requisição POST para o endpoint usuarios', async function (
     this.idUsuario = response.body._id;
   }
 
-  console.log('Status:', response.statusCode);
-  console.log('Body:', JSON.stringify(response.body, null, 2));
+  //console.log('Status:', response.statusCode);
+  //console.log('Body:', JSON.stringify(response.body, null, 2));
 });
 
 Then('a resposta deve ter status {int}', async function (statusCode) {
   const res = this.spec._response;
-  console.log('Status retornado:', res?.statusCode);
+  //console.log('Status retornado:', res?.statusCode);
   assert.strictEqual(res.statusCode, statusCode, `Esperado status ${statusCode}, mas foi ${res?.statusCode}`);
 });
 
