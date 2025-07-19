@@ -33,3 +33,6 @@ jobs:
       with:
         name: cucumber-html-report
         path: cucumber_report.html
+    
+    - name: Verificar cucumber-js
+      run: ls -la node_modules/.bin/cucumber-js    
