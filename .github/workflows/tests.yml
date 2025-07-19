@@ -22,9 +22,6 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Verificar cucumber-js
-        run: ls -la node_modules/.bin/cucumber-js
-
       - name: Rodar testes BDD
         run: npm test
 
@@ -36,3 +33,6 @@ jobs:
         with:
           name: cucumber-html-report
           path: cucumber_report.html
+
+      - name: Garantir permissão de execução
+        run: chmod +x node_modules/.bin/cucumber-js
