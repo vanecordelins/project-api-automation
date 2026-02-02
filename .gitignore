@@ -23,6 +23,10 @@
 hs_err_pid*
 replay_pid*
 cucumber_report.json
+cucumber_report.html
+
+# Generated HTML reports
+reports/
 # Node.js
 node_modules/
 npm-debug.log*
