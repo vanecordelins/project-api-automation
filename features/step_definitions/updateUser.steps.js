@@ -5,6 +5,7 @@ import assert from 'assert';
 import { gerarToken } from '../../utils/auth.js';
 import { usuarioValido } from '../../utils/dataFactory.js';
 import { gerarIdAleatorio } from '../../utils/dataUtils.js';
+import '../../utils/pactumSetup.js';
 
 let spec;
 let payload;
@@ -24,7 +25,7 @@ When('eu envio uma requisição PUT para o endpoint usuarios com dados atualizad
 
   this.spec = pactum.spec();
   await this.spec
-    .put(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .put(`/usuarios/${this.idUsuario}`)
     .withBody(payloadAtualizado)
     .expectStatus(200)
     .toss();
@@ -33,7 +34,7 @@ When('eu envio uma requisição PUT para o endpoint usuarios com dados atualizad
 When('eu envio uma requisição PUT para o endpoint com dados inválidos', async function () {
   this.spec = pactum.spec();
   await this.spec
-    .put(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .put(`/usuarios/${this.idUsuario}`)
     .withHeaders("Authorization", global.token)
     .withBody({
       nome: "",
@@ -49,7 +50,7 @@ Then('a resposta deve refletir as atualizações', async function () {
   const spec = pactum.spec();
 
   const res = await spec
-    .get(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .get(`/usuarios/${this.idUsuario}`)
     .expectStatus(200)
     .toss();
 

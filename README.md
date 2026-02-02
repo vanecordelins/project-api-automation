@@ -22,6 +22,16 @@ npm test              # executa os testes usando o comando padrão (configurado 
 npm run report        # gera o relatório HTML interativo em cucumber_report.html
 ```
 
+## Configuração do ambiente (opcional)
+
+- **SERVEREST_BASE_URL**: define a URL base da API. Padrão: `https://serverest.dev`
+
+Exemplo:
+
+```bash
+SERVEREST_BASE_URL=https://serverest.dev npm test
+```
+
 ## Estrutura dos Testes - Execução com mais detalhes dos testes
 
 ```bash

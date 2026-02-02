@@ -5,6 +5,7 @@ import assert from 'assert';
 import { gerarToken } from '../../utils/auth.js';
 import { usuarioValido } from '../../utils/dataFactory.js';
 import { gerarIdAleatorio } from '../../utils/dataUtils.js';
+import '../../utils/pactumSetup.js';
 
 let spec;
 let payload;
@@ -19,7 +20,7 @@ Given('eu tenho um id de usuário inexistente', function () {
 When('eu envio uma requisição GET para o endpoint usuarios com o ID do usuário criado', async function () {
   this.spec = pactum.spec();
   const response = await this.spec
-    .get(`https://serverest.dev/usuarios?_id=${this.idUsuario}`)
+    .get(`/usuarios?_id=${this.idUsuario}`)
     .expectStatus(200)
     .toss();
 
@@ -30,7 +31,7 @@ When('eu envio uma requisição GET para o endpoint usuarios com o ID do usuári
 When('eu envio uma requisição GET para o endpoint do usuário inexistente', async function () {
   this.spec = pactum.spec();
 
-  const url = `https://serverest.dev/usuarios?_id=${this.idUsuario}`;
+  const url = `/usuarios?_id=${this.idUsuario}`;
   //console.log('URL da requisição GET:', url);
 
   this.responseGet = await this.spec
