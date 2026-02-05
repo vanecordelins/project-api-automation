@@ -5,6 +5,7 @@ import assert from 'assert';
 import { gerarToken } from '../../utils/auth.js';
 import { usuarioValido } from '../../utils/dataFactory.js';
 import { gerarIdAleatorio } from '../../utils/dataUtils.js';
+import { BASE_URL } from '../../utils/config.js';
 
 let spec;
 let payload;
@@ -17,7 +18,7 @@ Given('que eu criei um novo usuário', async function () {
   const payload = usuarioValido();
 
   const response = await this.spec
-    .post('https://serverest.dev/usuarios')
+    .post(`${BASE_URL}/usuarios`)
     .withBody(payload)
     .expectStatus(201)
     .toss();
@@ -39,7 +40,7 @@ Given('eu estou autenticado com um usuário válido', async function () {
 
     const specCreate = pactum.spec();
     const response = await specCreate
-      .post('https://serverest.dev/usuarios')
+      .post(`${BASE_URL}/usuarios`)
       .withBody(this.usuarioPayload)
       .expectStatus(201)
       .toss();
@@ -60,7 +61,7 @@ Given('eu tenho um id de usuário fake', function () {
 Given('eu verifico se o ID realmente não existe', async function () {
   const specCheck = pactum.spec();
   await specCheck
-    .get(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .get(`${BASE_URL}/usuarios/${this.idUsuario}`)
     .expectStatus(400)
     .toss();
 });
@@ -69,7 +70,7 @@ When('eu envio uma requisição DELETE para o endpoint usuarios', async function
   this.spec = pactum.spec();
 
   const response = await this.spec
-    .delete(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .delete(`${BASE_URL}/usuarios/${this.idUsuario}`)
     .withHeaders('Authorization', global.token)
     .expectStatus(200)
     .toss();
@@ -81,7 +82,7 @@ When('eu envio uma requisição DELETE para o endpoint usuarios', async function
 When('eu envio uma requisição DELETE para o endpoint do usuário inexistente', async function () {
   this.spec = pactum.spec();
   await this.spec
-    .delete(`https://serverest.dev/usuarios/${this.idUsuario}`)
+    .delete(`${BASE_URL}/usuarios/${this.idUsuario}`)
     .withHeaders('Authorization', global.token)
     .expectStatus(200) // pode ajustar se API retornar 400
     .toss();

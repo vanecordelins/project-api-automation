@@ -5,6 +5,7 @@ import assert from 'assert';
 import { gerarToken } from '../../utils/auth.js';
 import { usuarioValido } from '../../utils/dataFactory.js';
 import { gerarIdAleatorio } from '../../utils/dataUtils.js';
+import { BASE_URL } from '../../utils/config.js';
 
 let spec;
 let payload;
@@ -19,7 +20,7 @@ Given('que eu tenho um payload válido de usuário', function () {
 Given('o usuário já existe no sistema', async function () {
   const specCreate = pactum.spec();
   await specCreate
-    .post('https://serverest.dev/usuarios')
+    .post(`${BASE_URL}/usuarios`)
     .withBody(this.payload)
     .expectStatus(201)
     .toss();
@@ -39,7 +40,7 @@ When('eu envio uma requisição POST para o endpoint usuarios', async function (
   this.spec = pactum.spec();
 
   const response = await this.spec
-    .post('https://serverest.dev/usuarios')
+    .post(`${BASE_URL}/usuarios`)
     .withBody(this.payload)
     .toss();
 

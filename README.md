@@ -38,6 +38,38 @@ npm run report   # gera o relatório HTML em cucumber_report.html
 - `step_definitions/`: implementação dos steps em JavaScript com Pactum.js
 - `utils/`: geração de token JWT e criação de funções geradoras de dados
 
+## Environment Variables
+
+### SERVEREST_BASE_URL
+
+Configures the base URL for the ServeRest API target.
+
+**Default**: `https://serverest.dev`
+
+**Format**: Valid HTTP or HTTPS URL without trailing slash
+
+**Examples**:
+
+Windows (cmd):
+```bash
+set SERVEREST_BASE_URL=http://localhost:3000
+npm test
+```
+
+Windows (PowerShell):
+```powershell
+$env:SERVEREST_BASE_URL="http://localhost:3000"
+npm test
+```
+
+Linux/macOS (bash):
+```bash
+export SERVEREST_BASE_URL=http://localhost:3000
+npm test
+```
+
+**Validation**: The test suite validates the URL format at startup. Invalid URLs will cause immediate failure with clear error message.
+
 ## Pipeline GitHub Actions
 
 Cada `push` ou `pull_request` na branch `main` executa automaticamente:

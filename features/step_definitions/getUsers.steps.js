@@ -5,6 +5,7 @@ import assert from 'assert';
 import { gerarToken } from '../../utils/auth.js';
 import { usuarioValido } from '../../utils/dataFactory.js';
 import { gerarIdAleatorio } from '../../utils/dataUtils.js';
+import { BASE_URL } from '../../utils/config.js';
 
 let spec;
 let payload;
@@ -15,7 +16,7 @@ let token;
 When('eu envio uma requisição GET para o endpoint usuarios sem parametros', async function () {
   this.spec = pactum.spec();
   const response = await this.spec
-    .get('https://serverest.dev/usuarios')
+    .get(`${BASE_URL}/usuarios`)
     .expectStatus(200)
     .toss();
 
