@@ -5,7 +5,8 @@
     "test": "cucumber-js --format @cucumber/pretty-formatter --format json:cucumber_report.json",
     "report": "node generate-report.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "ai-review": "node scripts/ai-review.js"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
