@@ -3,7 +3,7 @@ import { faker } from '@faker-js/faker';
 import pactum from 'pactum';
 import assert from 'assert';
 import { gerarToken } from '../../utils/auth.js';
-import { usuarioValido } from '../../utils/dataFactory.js';
+import { usuarioValido, usuarioValidoNaoAdministrador } from '../../utils/dataFactory.js';
 import { gerarIdAleatorio } from '../../utils/dataUtils.js';
 import '../../utils/pactumSetup.js';
 
@@ -15,6 +15,10 @@ let token;
 
 Given('que eu tenho um payload válido de usuário', function () {
   this.payload = usuarioValido();
+});
+
+Given('que eu tenho um payload válido de usuário com administrador false', function () {
+  this.payload = usuarioValidoNaoAdministrador();
 });
 
 Given('o usuário já existe no sistema', async function () {

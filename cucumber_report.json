@@ -15,11 +15,11 @@
             "line": 4,
             "name": "que eu tenho um payload válido de usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 806299
+              "duration": 857999
             }
           },
           {
@@ -28,11 +28,11 @@
             "line": 5,
             "name": "eu envio uma requisição POST para o endpoint usuarios",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:37"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:42"
             },
             "result": {
               "status": "passed",
-              "duration": 539771999
+              "duration": 467467100
             }
           },
           {
@@ -41,11 +41,11 @@
             "line": 6,
             "name": "a resposta deve ter status 201",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 380699
+              "duration": 415899
             }
           },
           {
@@ -54,11 +54,74 @@
             "line": 7,
             "name": "a resposta deve conter o campo \"_id\"",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:62"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:67"
             },
             "result": {
               "status": "passed",
-              "duration": 131200
+              "duration": 152699
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "criar-usuário;criar-usuário-com-administrador-\"false\"",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "Criar usuário com administrador \"false\"",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 10,
+            "name": "que eu tenho um payload válido de usuário com administrador false",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:20"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 164600
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 11,
+            "name": "eu envio uma requisição POST para o endpoint usuarios",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:42"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 205454099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 12,
+            "name": "a resposta deve ter status 201",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 269199
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "a resposta deve conter o campo \"_id\"",
+            "match": {
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:67"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 76800
             }
           }
         ],
@@ -69,72 +132,72 @@
         "description": "",
         "id": "criar-usuário;criar-usuário-duplicado",
         "keyword": "Scenario",
-        "line": 9,
+        "line": 15,
         "name": "Criar usuário duplicado",
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 10,
+            "line": 16,
             "name": "que eu tenho um payload válido de usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 84599
+              "duration": 347600
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 11,
+            "line": 17,
             "name": "o usuário já existe no sistema",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:19"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:24"
             },
             "result": {
               "status": "passed",
-              "duration": 204818700
+              "duration": 195047700
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 12,
+            "line": 18,
             "name": "eu envio uma requisição POST para o endpoint usuarios",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:37"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:42"
             },
             "result": {
               "status": "passed",
-              "duration": 227660400
+              "duration": 200946600
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 13,
+            "line": 19,
             "name": "a resposta deve ter status 400",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 244400
+              "duration": 207200
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 14,
+            "line": 20,
             "name": "a mensagem de erro deve ser \"Este email já está sendo usado\"",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:66"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:71"
             },
             "result": {
               "status": "passed",
-              "duration": 276400
+              "duration": 255499
             }
           }
         ],
@@ -145,46 +208,46 @@
         "description": "",
         "id": "criar-usuário;criar-usuário-inválido",
         "keyword": "Scenario",
-        "line": 16,
+        "line": 22,
         "name": "Criar usuário inválido",
         "steps": [
           {
             "arguments": [],
             "keyword": "Given ",
-            "line": 17,
+            "line": 23,
             "name": "que eu tenho um payload inválido de usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:28"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:33"
             },
             "result": {
               "status": "passed",
-              "duration": 122499
+              "duration": 170699
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "line": 18,
+            "line": 24,
             "name": "eu envio uma requisição POST para o endpoint usuarios",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:37"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:42"
             },
             "result": {
               "status": "passed",
-              "duration": 205337400
+              "duration": 197953400
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 19,
+            "line": 25,
             "name": "a resposta deve ter status 400",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 186999
+              "duration": 129300
             }
           },
           {
@@ -219,14 +282,14 @@
               }
             ],
             "keyword": "And ",
-            "line": 20,
+            "line": 26,
             "name": "as mensagens de erro devem ser:",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:76"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:81"
             },
             "result": {
               "status": "passed",
-              "duration": 404199
+              "duration": 317400
             }
           }
         ],
@@ -257,11 +320,11 @@
             "line": 4,
             "name": "que eu criei um novo usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 225834800
+              "duration": 201680999
             }
           },
           {
@@ -270,11 +333,11 @@
             "line": 5,
             "name": "eu estou autenticado com um usuário válido",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:35"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:36"
             },
             "result": {
               "status": "passed",
-              "duration": 204846800
+              "duration": 201113499
             }
           },
           {
@@ -283,11 +346,11 @@
             "line": 6,
             "name": "eu envio uma requisição DELETE para o endpoint usuarios",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:68"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:69"
             },
             "result": {
               "status": "passed",
-              "duration": 206632299
+              "duration": 206827899
             }
           },
           {
@@ -296,11 +359,11 @@
             "line": 7,
             "name": "a resposta deve ter status 200",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 253200
+              "duration": 119000
             }
           }
         ],
@@ -320,11 +383,11 @@
             "line": 10,
             "name": "eu estou autenticado com um usuário válido",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:35"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:36"
             },
             "result": {
               "status": "passed",
-              "duration": 441048699
+              "duration": 413031300
             }
           },
           {
@@ -333,11 +396,11 @@
             "line": 11,
             "name": "eu tenho um id de usuário fake",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:57"
             },
             "result": {
               "status": "passed",
-              "duration": 521499
+              "duration": 954999
             }
           },
           {
@@ -346,11 +409,11 @@
             "line": 12,
             "name": "eu verifico se o ID realmente não existe",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:60"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 203293400
+              "duration": 203319499
             }
           },
           {
@@ -359,11 +422,11 @@
             "line": 13,
             "name": "eu envio uma requisição DELETE para o endpoint do usuário inexistente",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:81"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:82"
             },
             "result": {
               "status": "passed",
-              "duration": 204273700
+              "duration": 202542500
             }
           },
           {
@@ -372,11 +435,11 @@
             "line": 14,
             "name": "a resposta deve indicar que o usuário não existe",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:90"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:91"
             },
             "result": {
               "status": "passed",
-              "duration": 235999
+              "duration": 134900
             }
           }
         ],
@@ -407,11 +470,11 @@
             "line": 4,
             "name": "que eu criei um novo usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 227662400
+              "duration": 200321600
             }
           },
           {
@@ -420,11 +483,11 @@
             "line": 5,
             "name": "eu envio uma requisição GET para o endpoint usuarios com o ID do usuário criado",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:19"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:20"
             },
             "result": {
               "status": "passed",
-              "duration": 205647399
+              "duration": 200318700
             }
           },
           {
@@ -433,11 +496,11 @@
             "line": 6,
             "name": "a resposta deve ter status 200",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 105600
+              "duration": 253200
             }
           },
           {
@@ -446,11 +509,11 @@
             "line": 7,
             "name": "a resposta deve conter o usuário criado",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:46"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:47"
             },
             "result": {
               "status": "passed",
-              "duration": 122899
+              "duration": 165199
             }
           }
         ],
@@ -470,11 +533,11 @@
             "line": 10,
             "name": "eu tenho um id de usuário inexistente",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 211499
+              "duration": 97800
             }
           },
           {
@@ -483,11 +546,11 @@
             "line": 11,
             "name": "eu envio uma requisição GET para o endpoint do usuário inexistente",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:30"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:31"
             },
             "result": {
               "status": "passed",
-              "duration": 229795700
+              "duration": 210983799
             }
           },
           {
@@ -496,11 +559,11 @@
             "line": 12,
             "name": "a resposta deve retornar uma lista vazia",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:65"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:66"
             },
             "result": {
               "status": "passed",
-              "duration": 139599
+              "duration": 270199
             }
           }
         ],
@@ -531,11 +594,11 @@
             "line": 4,
             "name": "eu envio uma requisição GET para o endpoint usuarios sem parametros",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUsers.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUsers.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 385599900
+              "duration": 268115299
             }
           },
           {
@@ -544,11 +607,11 @@
             "line": 5,
             "name": "a resposta deve ter status 200",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 248400
+              "duration": 115999
             }
           },
           {
@@ -557,11 +620,11 @@
             "line": 6,
             "name": "a lista de usuários deve ser retornada",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUsers.steps.js:25"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUsers.steps.js:26"
             },
             "result": {
               "status": "passed",
-              "duration": 388199
+              "duration": 177799
             }
           }
         ],
@@ -592,11 +655,11 @@
             "line": 4,
             "name": "que eu criei um novo usuário",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 207123800
+              "duration": 199607600
             }
           },
           {
@@ -605,11 +668,11 @@
             "line": 5,
             "name": "eu estou autenticado com um usuário válido",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:35"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:36"
             },
             "result": {
               "status": "passed",
-              "duration": 211725199
+              "duration": 198226000
             }
           },
           {
@@ -618,11 +681,11 @@
             "line": 6,
             "name": "eu envio uma requisição PUT para o endpoint usuarios com dados atualizados",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\updateUser.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\updateUser.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 219856099
+              "duration": 225572600
             }
           },
           {
@@ -631,11 +694,11 @@
             "line": 7,
             "name": "a resposta deve ter status 200",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 233699
+              "duration": 96999
             }
           },
           {
@@ -644,11 +707,11 @@
             "line": 8,
             "name": "a resposta deve refletir as atualizações",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\updateUser.steps.js:48"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\updateUser.steps.js:49"
             },
             "result": {
               "status": "passed",
-              "duration": 228865700
+              "duration": 198042699
             }
           }
         ],
@@ -668,11 +731,11 @@
             "line": 11,
             "name": "eu estou autenticado com um usuário válido",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:35"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\deleteUser.steps.js:36"
             },
             "result": {
               "status": "passed",
-              "duration": 407664499
+              "duration": 397071200
             }
           },
           {
@@ -681,11 +744,11 @@
             "line": 12,
             "name": "eu tenho um id de usuário inexistente",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:15"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\getUserById.steps.js:16"
             },
             "result": {
               "status": "passed",
-              "duration": 52199
+              "duration": 91699
             }
           },
           {
@@ -694,11 +757,11 @@
             "line": 13,
             "name": "eu envio uma requisição PUT para o endpoint com dados inválidos",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\updateUser.steps.js:33"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\updateUser.steps.js:34"
             },
             "result": {
               "status": "passed",
-              "duration": 205404000
+              "duration": 204199399
             }
           },
           {
@@ -707,11 +770,11 @@
             "line": 14,
             "name": "a resposta deve ter status 400",
             "match": {
-              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\projeto-automacao\\project-api-automation\\features\\step_definitions\\createUser.steps.js:56"
+              "location": "file:\\C:\\Users\\vanec\\OneDrive\\Documentos\\project-api-automation\\features\\step_definitions\\createUser.steps.js:61"
             },
             "result": {
               "status": "passed",
-              "duration": 138600
+              "duration": 110599
             }
           }
         ],
