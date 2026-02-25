@@ -1,17 +1,7 @@
-import { Given, When, Then } from '@cucumber/cucumber';
-import { faker } from '@faker-js/faker';
+import { When, Then } from '@cucumber/cucumber';
 import pactum from 'pactum';
 import assert from 'assert';
-import { gerarToken } from '../../utils/auth.js';
-import { usuarioValido } from '../../utils/dataFactory.js';
-import { gerarIdAleatorio } from '../../utils/dataUtils.js';
 import '../../utils/pactumSetup.js';
-
-let spec;
-let payload;
-let idUsuario = gerarIdAleatorio(10);
-let token;
-
 
 When('eu envio uma requisição PUT para o endpoint usuarios com dados atualizados', async function () {
   const payloadAtualizado = {
@@ -35,7 +25,7 @@ When('eu envio uma requisição PUT para o endpoint com dados inválidos', async
   this.spec = pactum.spec();
   await this.spec
     .put(`/usuarios/${this.idUsuario}`)
-    .withHeaders("Authorization", global.token)
+    .withHeaders("Authorization", this.token)
     .withBody({
       nome: "",
       email: "emailinvalido",

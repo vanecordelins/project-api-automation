@@ -3,9 +3,15 @@
   "type": "module",
   "scripts": {
     "test": "cucumber-js --format @cucumber/pretty-formatter --format json:cucumber_report.json",
-    "report": "node generate-report.js"
+    "report": "node generate-report.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "ai-review": "node scripts/ai-review.js"
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "globals": "^15.12.0",
     "@cucumber/cucumber": "^10.0.0",
     "@cucumber/pretty-formatter": "^2.0.0",
     "@faker-js/faker": "^8.0.2",
