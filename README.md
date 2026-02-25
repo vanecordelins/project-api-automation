@@ -1,4 +1,5 @@
 [![Run API Tests](https://github.com/vanecordelins/project-api-automation/actions/workflows/tests.yml/badge.svg)](https://github.com/vanecordelins/project-api-automation/actions/workflows/tests.yml)
+[![Lint & Quality](https://github.com/vanecordelins/project-api-automation/actions/workflows/lint-and-quality.yml/badge.svg)](https://github.com/vanecordelins/project-api-automation/actions/workflows/lint-and-quality.yml)
 
 [![ServeRest Badge](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
 
@@ -20,6 +21,8 @@ cd project-api-automation
 npm install
 npm test            # runs the test suite (configured in package.json)
 npm run report      # generates the HTML report
+npm run lint        # runs ESLint (style & antipatterns)
+npm run lint:fix    # runs ESLint with auto-fix
 ```
 
 ## Environment configuration (optional)
@@ -47,6 +50,16 @@ npm run report
 - `features/users/`: `.feature` files organized by endpoint/action (GET, POST, PUT, DELETE)
 - `features/step_definitions/`: step implementations in JavaScript using Pactum.js
 - `utils/`: shared utilities (token generation, data factories, config helpers)
+
+## Lint & code quality pipeline
+
+On every **push** (and on **pull_request**), the **Lint & Code Quality** workflow runs **before** the test pipeline:
+
+1. **ESLint** – style, unused variables, `no-console` in steps/utils, and antipatterns (e.g. no `global`; use Cucumber World `this`).
+2. **BDD / feature quality** – `scripts/ai-review.js` analyzes feature files (scenario count, duplicate steps across features).
+
+- Local: `npm run lint` or `npm run lint:fix`
+- Config: `eslint.config.js` (flat config, ESM)
 
 ## GitHub Actions pipeline
 

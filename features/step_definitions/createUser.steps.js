@@ -1,17 +1,8 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import { faker } from '@faker-js/faker';
 import pactum from 'pactum';
 import assert from 'assert';
-import { gerarToken } from '../../utils/auth.js';
 import { usuarioValido, usuarioValidoNaoAdministrador } from '../../utils/dataFactory.js';
-import { gerarIdAleatorio } from '../../utils/dataUtils.js';
 import '../../utils/pactumSetup.js';
-
-let spec;
-let payload;
-let idUsuario = gerarIdAleatorio(10);
-let token;
-
 
 Given('que eu tenho um payload válido de usuário', function () {
   this.payload = usuarioValido();
@@ -56,12 +47,6 @@ When('eu envio uma requisição POST para o endpoint usuarios', async function (
 
   //console.log('Status:', response.statusCode);
   //console.log('Body:', JSON.stringify(response.body, null, 2));
-});
-
-Then('a resposta deve ter status {int}', async function (statusCode) {
-  const res = this.spec._response;
-  //console.log('Status retornado:', res?.statusCode);
-  assert.strictEqual(res.statusCode, statusCode, `Esperado status ${statusCode}, mas foi ${res?.statusCode}`);
 });
 
 Then('a resposta deve conter o campo "_id"', function () {

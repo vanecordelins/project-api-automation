@@ -1,17 +1,6 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import { faker } from '@faker-js/faker';
 import pactum from 'pactum';
-import assert from 'assert';
-import { gerarToken } from '../../utils/auth.js';
-import { usuarioValido } from '../../utils/dataFactory.js';
-import { gerarIdAleatorio } from '../../utils/dataUtils.js';
 import '../../utils/pactumSetup.js';
-
-let spec;
-let payload;
-let idUsuario = gerarIdAleatorio(10);
-let token;
-
 
 Given('eu tenho um id de usuário inexistente', function () {
   this.idUsuario = '000000000000000000000000002344354532432424000000';
@@ -40,8 +29,7 @@ When('eu envio uma requisição GET para o endpoint do usuário inexistente', as
     .returns('res.body')
     .toss();
 
-  //console.log('Resposta da requisição GET:');
-  //console.log(JSON.stringify(this.responseGet, null, 2));
+  //console.log('Resposta da requisição GET:', JSON.stringify(this.responseGet, null, 2));
 });
 
 Then('a resposta deve conter o usuário criado', function () {
